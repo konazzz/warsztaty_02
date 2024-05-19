@@ -2,22 +2,23 @@ from random import randint
 
 random_numbs = []
 
-for i in range(6):
-    one_of_6 = randint(0, 50)
-    if one_of_6 not in random_numbs:
-        random_numbs.append(one_of_6)
-    else:
-        continue
-
-print(random_numbs)
 
 guessed = False
 
 while guessed is not True:
+
+    for i in range(6):
+        one_of_6 = randint(0, 50)
+        if one_of_6 not in random_numbs:
+            random_numbs.append(one_of_6)
+        else:
+            continue
+
     your_guess = input("input 6 numbers: ")
     your_list = your_guess.split()
 
     def has_no_duplicates(lst):
+        """ checking if input has no duplicates with True or False as a result """
         return len(lst) == len(set(lst))
 
     try:
@@ -35,6 +36,7 @@ while guessed is not True:
         continue
 
     how_many = []
+    your_guess_sorted = sorted(your_list)
 
     for i in your_list:
         i = int(i)
@@ -43,18 +45,17 @@ while guessed is not True:
 
     print(how_many)
 
+    def the_guess(amount):
+        """ checking how many numbers have been guessed """
+        print(your_guess_sorted)
+        print(random_numbs)
+        print(f"guessed {amount}!")
+
     if len(how_many) < 3:
+        print(your_guess_sorted)
+        print(random_numbs)
         print("didn't guess. try again")
         continue
-    elif len(how_many) == 3:
-        print("guessed 3!")
+    elif the_guess(len(how_many)):
         guessed = True
-    elif len(how_many) == 4:
-        print("guessed 4!")
-        guessed = True
-    elif len(how_many) == 5:
-        print("guessed 5!")
-        guessed = True
-    elif len(how_many) == 6:
-        print("guessed 6!")
-        guessed = True
+
