@@ -17,10 +17,13 @@ while guessed is not True:
     your_guess = input("input 6 numbers: ")
     your_list = your_guess.split()
 
+    def has_no_duplicates(lst):
+        return len(lst) == len(set(lst))
+
     try:
         for i in your_list:
             i = int(i)
-            if len(your_list) == 6:
+            if i <= 49 and len(your_list) == 6 and has_no_duplicates(your_list) is True:
                 pass
             else:
                 raise IndexError
@@ -28,11 +31,10 @@ while guessed is not True:
         print("some of those aren't numbers")
         continue
     except IndexError:
-        print("wrong amount of numbers")
+        print("wrong amount of numbers or some of them are too big")
         continue
 
-
-    how_many =[]
+    how_many = []
 
     for i in your_list:
         i = int(i)
